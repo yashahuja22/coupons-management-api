@@ -4,11 +4,12 @@
 
 This project is a backend service built using Java and Spring Boot to manage and apply discount coupons for an e-commerce platform.
 
-The goal of this assignment was not just to implement coupon logic, but to think through different coupon scenarios, understand edge cases, and clearly document what is implemented and what is not.
-
 The system currently supports:
+
 •	Cart-wise coupons
+
 •	Product-wise coupons
+
 •	Buy X Get Y (BxGy) coupons
 
 The design allows new coupon types to be added with minimal changes.
@@ -18,47 +19,58 @@ The design allows new coupon types to be added with minimal changes.
 The application uses a strategy-based design for handling different coupon types.
 
 Each coupon type has its own class responsible for:
-•	Checking whether the coupon is applicable
-•	Calculating the discount
 
-This keeps the logic isolated and makes the code easier to read, test, and extend.
+•	Checking whether the coupon is applicable
+
+•	Calculating the discount
 
 ### Key Components
 
 •	CouponStrategy – common interface for all coupon types
+
 •	CartWiseCouponStrategy
+
 •	ProductWiseCouponStrategy
+
 •	BxGyCouponStrategy
+
 •	CouponStrategyFactory – selects the correct strategy based on coupon type
 
 An in-memory store is used to keep the implementation simple and focused on business logic.
 
 ### Implemented Coupon Types
 
-1. Cart-wise Coupon
+#### 1. Cart-wise Coupon
 
 Applies a percentage discount on the entire cart when the cart total crosses a certain amount.
 
 **Example**
+
 •	Cart total ≥ ₹100
+
 •	10% discount on the full cart value
 
 
-2. Product-wise Coupon
+##### 2. Product-wise Coupon
 
 Applies a discount to a specific product if it is present in the cart.
 
 **Example**
+
 •	Product ID 1 is present in the cart
+
 •	20% discount applied to that product (for all quantities)
 
-3. Buy X Get Y (BxGy) Coupon
+##### 3. Buy X Get Y (BxGy) Coupon
 
 Provides free products when certain products are purchased.
 
 **Example**
+
 •	Buy 2 units of Product X
+
 •	Get 1 unit of Product Z free
+
 •	A repetition limit controls how many times the offer can be applied
 
 This implementation is intentionally kept simple and its limitations are documented below.
@@ -122,8 +134,6 @@ Due to time constraints, the following scenarios were thought through but not im
 •	Overlapping buy and get products
 
 •	Complex multi-level BxGy rules
-
-These cases are documented to show understanding of real-world coupon systems.
 
 ### Assumptions
 
